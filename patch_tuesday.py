@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Simple script to calculate Patch Tuesday
 
 # Inputs: Year [Format: YY or YYYY], Month [Format: MM or Month abbrieviation Jan, Feb, etc. or Full Month March, July, etc.)
@@ -35,9 +37,12 @@ def patch_tuesday(input_month, input_year):
     first_day = calendar.day_name[calendar.weekday(int(input_year),int(input_month),1)]
 
     # Concatenate to details for date.
-    patch_tuesday = str(tuesday_offset[first_day])+"/"+input_month+"/"+input_year
+    patch_tuesday_date = str(tuesday_offset[first_day])+"/"+input_month+"/"+input_year
     
+    # Store just the Patch Tuesday date
+    patch_tuesday = tuesday_offset[first_day]
+
     # print out the details.
-    print("Patch Tuesday for ", calendar.month_name[int(input_month)], "-",input_year, " = ", patch_tuesday)
+    print("Patch Tuesday for ", calendar.month_name[int(input_month)], "-",input_year, " = ", patch_tuesday_date)
 
     return patch_tuesday
