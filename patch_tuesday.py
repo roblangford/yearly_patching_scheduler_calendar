@@ -19,17 +19,21 @@ Tue = +7days
 
 # python3 library module calendar - https://docs.python.org/3/library/calendar.html
 
+# Libraries:
+import calendar
+from datetime import date
+
 def patch_tuesday(input_month, input_year):
 
-    import calendar
-    from datetime import date
+    # import calendar
+    # from datetime import date
 
     # Defined dictionary for the offset days for Patch Tuesdays
     tuesday_offset = {'Monday':9, 'Tuesday':8, 'Wednesday':14, 'Thursday':13, 'Friday':12, 'Saturday':11, 'Sunday':10}
 
     # Input year and month
-    #input_year = input("Please input year: ")
-    #input_month = input("Please input month: ")
+    # input_year = input("Please input year: ")
+    # input_month = input("Please input month: ")
 
     # Calculate First Day of the Month
     # calendar.weekday returns the numeric value based on the integer inputs of year, month, day
@@ -38,11 +42,25 @@ def patch_tuesday(input_month, input_year):
 
     # Concatenate to details for date.
     patch_tuesday_date = str(tuesday_offset[first_day])+"/"+input_month+"/"+input_year
-    
+
     # Store just the Patch Tuesday date
     patch_tuesday = tuesday_offset[first_day]
 
-    # print out the details.
-    print("Patch Tuesday for ", calendar.month_name[int(input_month)], "-",input_year, " = ", patch_tuesday_date)
+    dict_patch_tuesday = {'patch_tuesday':patch_tuesday,'patch_tuesday_date':patch_tuesday_date}
 
-    return patch_tuesday
+    return dict_patch_tuesday
+
+
+# Main program:
+def main():
+
+    #Input year and month
+    input_year = input("Please input year: ")
+    input_month = input("Please input month: ")
+
+    dates = patch_tuesday(input_month,input_year)
+
+    # print out the details.
+    print("Patch Tuesday for ", calendar.month_name[int(input_month)], "-",input_year, " = ", dates['patch_tuesday_date'])
+
+main()
