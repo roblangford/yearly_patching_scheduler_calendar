@@ -78,4 +78,4 @@ if __name__ == '__main__':
         arg = sys.argv[1]
     except IndexError:
         raise SystemExit(f"Usage: {sys.argv[0]} <month> <year>")
-    main()
+    main() // TODO: Create #2 input arguments to handle month/year being input or left blank
