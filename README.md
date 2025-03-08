@@ -1,8 +1,17 @@
-# yearly_patching_scheduler_calendar
+# ![Python](https://img.shields.io/badge/python-3776ab?style=for-the-badge&logo=python&logoColor=yellow) - yearly_patching_scheduler_calendar
 Project to generate a yearly schedule for patching based on agreed offset.
 
 I've worked with Microsoft Windows and Server for a number of years and no matter where we are the OS patching windows in most business tend to follow the prescribed Microsoft Patch Tuesday releases, emergency security patches not withstanding.
 With this in mind it felt like a fun project to investigate and create a tool to calculate this value based on the year/month being provided.
+
+## Status
+<html>
+<div style="text-align: centre;">
+<img alt="GitHub Tag" src="https://img.shields.io/github/v/tag/roblangford/yearly_patching_scheduler_calendar?style=for-the-badge&logo=github">
+<img alt="GitHub Issues Open" src="https://img.shields.io/github/issues-raw/roblangford/yearly_patching_scheduler_calendar?style=for-the-badge&logo=github">
+<img alt="GitHub Issues Closed" src="https://img.shields.io/github/issues-closed-raw/roblangford/yearly_patching_scheduler_calendar?style=for-the-badge&logo=github">
+</div>
+</html>
 
 ## Investigation
 
@@ -44,3 +53,8 @@ python3 patch_tuesday.py <YEAR> <MONTH>
 
 If you provide two inputs at the command line during execution the first again is assumed to be the Year, and the second a Month. The month is validated and a relevant error message returned if not.
 Similar to the prompted execution when not providing any values at cli execution a formatted response will return the Patch Tuesday information.
+
+## Dependencies
+
+![pylint]()  
+![python]()  
