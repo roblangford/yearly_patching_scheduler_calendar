@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
+"""Simple script to calculate Microsofts Patch Tuesday (2nd Tuesday of the month)
 
-# Simple script to calculate Patch Tuesday
+Usage: 
 
-# Inputs: Year [Format: YY or YYYY], Month [Format: MM or Month abbrieviation Jan, Feb, etc. or Full Month March, July, etc.)
-# Outputs: date of Microsoft Patch Tuesday [Format: DD/MM/YYYY]
+    python3 patch_tuesday.py <YEAR> <MONTH>
 
-''' 
+Args:
+    year: The year in a numberic format: e.g. 2022, 2023
+    month: The Month in a numeric format: e.g. 1 = Jan, 2 Feb etc.
+
 Depending on the day of the 1st of the month there is an offset:
 Wed = +13days
 Thu = +12days
@@ -14,53 +17,97 @@ Sat = +10days
 Sun = +9days
 Mon = +8days
 Tue = +7days
-
-'''
-
+"""
+# Future enhancements:
 # python3 library module calendar - https://docs.python.org/3/library/calendar.html
 
 # Libraries:
+import sys
 import calendar
-from datetime import date
 
-def patch_tuesday(input_month, input_year):
+def patch_tuesday(year, month):
+    """Calculate the Microsoft Patch tuesday for a given month or year
 
-    # import calendar
-    # from datetime import date
-
+    Args:
+        month: The Month in a numeric format: e.g. 1 = Jan, 2 Feb etc.
+        year: The year in a numberic format: e.g. 2022, 2023
+    """
     # Defined dictionary for the offset days for Patch Tuesdays
-    tuesday_offset = {'Monday':9, 'Tuesday':8, 'Wednesday':14, 'Thursday':13, 'Friday':12, 'Saturday':11, 'Sunday':10}
-
-    # Input year and month
-    # input_year = input("Please input year: ")
-    # input_month = input("Please input month: ")
+    tuesday_offset = { 'Monday':9,
+                      'Tuesday':8,
+                      'Wednesday':14,
+                      'Thursday':13,
+                      'Friday':12,
+                      'Saturday':11,
+                      'Sunday':10 }
 
     # Calculate First Day of the Month
     # calendar.weekday returns the numeric value based on the integer inputs of year, month, day
-    # calendar.day_name returns the name of the day based on a numeric input: 0 = Monday, 1 = Tuesday, etc.
-    first_day = calendar.day_name[calendar.weekday(int(input_year),int(input_month),1)]
+    # calendar.day_name returns the day name based on a number input: 0 = Monday, 1 = Tuesday, etc.
+    first_day = calendar.day_name[calendar.weekday(int(year),int(month),1)]
 
     # Concatenate to details for date.
-    patch_tuesday_date = str(tuesday_offset[first_day])+"/"+input_month+"/"+input_year
+    patch_tuesday_date = str(tuesday_offset[first_day])+"/"+str(month)+"/"+str(year)
 
-    # Store just the Patch Tuesday date
-    patch_tuesday = tuesday_offset[first_day]
+    # Store just the Patch Tuesday offset value
+    patch_tuesday_offset = tuesday_offset[first_day]
 
-    dict_patch_tuesday = {'patch_tuesday':patch_tuesday,'patch_tuesday_date':patch_tuesday_date}
+    dict_patch_tuesday = { 'patch_tuesday':patch_tuesday_offset,
+                           'patch_tuesday_date':patch_tuesday_date }
 
     return dict_patch_tuesday
+
+def print_output(input_year, input_month, dates):
+    """Format and print output to screen.
+
+    Args:
+        input_year: The user input month
+        input_month: The user input month
+        dates: The Dates values returned from patch_tuesday function
+
+    """
+    print("Patch Tuesday for", calendar.month_name[int(input_month)],
+          "-",int(input_year), " = ", dates['patch_tuesday_date'])
 
 
 # Main program:
 def main():
+    """Print the day and date of patch Tuesday
+
+    Args:
+        year: The year in a numberic format: e.g. 2022, 2023
+        month: The Month in a numeric format: e.g. 1 = Jan, 2 Feb etc.
+    """
 
     #Input year and month
     input_year = input("Please input year: ")
-    input_month = input("Please input month: ")
+    #Ensure a valid month is input ()
+    while True:
+        input_month = input("Please input month: ")
+        if int(input_month) in range(1,13): # Ranged 1-13 to include 12 as a valid month
+            break
+        else:
+            print("Invalid Month, please try again")
+            continue
 
-    dates = patch_tuesday(input_month,input_year)
+    # Execute the patch_tuesday function and pass all details to the print_output function
+    print_output(input_year, input_month, patch_tuesday(input_year, input_month))
 
-    # print out the details.
-    print("Patch Tuesday for ", calendar.month_name[int(input_month)], "-",input_year, " = ", dates['patch_tuesday_date'])
 
-main()
+if __name__ == '__main__':
+    if len(sys.argv) == 3:
+        arg_year = int(sys.argv[1])
+        arg_month = int(sys.argv[2])
+        if arg_month in range(1,13): # Ranged 1-13 to include 12 as a valid month
+            print_output(arg_year, arg_month, patch_tuesday(arg_year, arg_month))
+        else:
+            raise SystemExit(f"Invalid month: {sys.argv[2]} \nThis should be between 1 and 12. \nPlease Try again.")
+    elif len(sys.argv) == 2:
+        arg_year = int(sys.argv[1])
+        print(f"User input only a year, outputting all Patch tuesdays for year: {arg_year}")
+        for range_month in range(1,13):
+            print_output(arg_year, range_month, patch_tuesday(arg_year, range_month))
+    elif len(sys.argv) == 1:
+        main()
+    else:
+        raise SystemExit(f"Usage: {sys.argv[0]} <year> <month>")
