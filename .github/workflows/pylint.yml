@@ -21,3 +21,8 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
+    - name: Update Pylint badge
+      uses: Silleellie/pylint-github-action@v2.1
+      with:
+        lint-path: src
+        python_version: 3.10

@@ -13,6 +13,8 @@ With this in mind it felt like a fun project to investigate and create a tool to
 </div>
 </html>
 
+![pylint]()
+
 ## Investigation
 
 I had used an excel spreadsheet to perform calculations and worked out the there was a standard offset. Say if the first Day of the month was a Tuesday, then logically the second Tuesday (a.k.a Patch Tuesday) would be 7 days later (the 8th day). If the first day of the month fell on Monday, then the second Tuesday was 8 days later (the 9th day), this trend continues until we are back to Tuesday again..  
