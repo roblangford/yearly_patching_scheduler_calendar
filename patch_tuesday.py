@@ -86,9 +86,8 @@ def main():
         input_month = input("Please input month: ")
         if int(input_month) in range(1,13): # Ranged 1-13 to include 12 as a valid month
             break
-        else:
-            print("Invalid Month, please try again")
-            continue
+        print("Invalid Month, please try again")
+        continue
 
     # Execute the patch_tuesday function and pass all details to the print_output function
     print_output(input_year, input_month, patch_tuesday(input_year, input_month))
@@ -101,7 +100,9 @@ if __name__ == '__main__':
         if arg_month in range(1,13): # Ranged 1-13 to include 12 as a valid month
             print_output(arg_year, arg_month, patch_tuesday(arg_year, arg_month))
         else:
-            raise SystemExit(f"Invalid month: {sys.argv[2]} \nThis should be between 1 and 12. \nPlease Try again.")
+            raise SystemExit(
+                f"Invalid month:{sys.argv[2]}\nThis should be between 1 and 12.\nPlease Try again."
+                )
     elif len(sys.argv) == 2:
         arg_year = int(sys.argv[1])
         print(f"User input only a year, outputting all Patch tuesdays for year: {arg_year}")
