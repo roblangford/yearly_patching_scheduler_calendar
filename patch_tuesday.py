@@ -76,6 +76,6 @@ def main():
 if __name__ == '__main__':
     try:
         arg = sys.argv[1]
-    except IndexError:
-        raise SystemExit(f"Usage: {sys.argv[0]} <month> <year>")
-    main() // TODO: Create #2 input arguments to handle month/year being input or left blank
+    except IndexError as InputError:
+        raise SystemExit(f"Usage: {sys.argv[0]} <month> <year>") from InputError
+    main() # // TODO:Create #2 input arguments to handle month/year being input or left blank
