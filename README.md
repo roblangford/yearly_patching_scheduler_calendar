@@ -13,7 +13,6 @@ With this in mind it felt like a fun project to investigate and create a tool to
 </div>
 </html>
 
-![pylint]()
 
 ## Investigation
 

@@ -21,8 +21,3 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
-    - name: Pylint badge ${{ matrix.python-version }}
-      uses: Silleellie/pylint-github-action@v2.1
-      with:
-        lint-path: src
-        python-version: ${{ matrix.python-version }}
