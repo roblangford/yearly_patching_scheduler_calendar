@@ -1,6 +1,6 @@
 ansible==9.2.0
 ansible-compat==4.1.11
-ansible-core==2.16.3
+ansible-core==2.16.14rc1
 ansible-lint==6.17.2
 apache-libcloud==3.4.1
 appdirs==1.4.4
