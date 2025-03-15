@@ -94,21 +94,21 @@ def main():
 
 
 if __name__ == '__main__':
-    if len(sys.argv) == 3:
+    if len(sys.argv) == 3: # Executes when user provides two arguments at execution
         arg_year = int(sys.argv[1])
         arg_month = int(sys.argv[2])
-        if arg_month in range(1,13): # Ranged 1-13 to include 12 as a valid month
+        if arg_month in range(1, 13): # Validate month is correct
             print_output(arg_year, arg_month, patch_tuesday(arg_year, arg_month))
         else:
             raise SystemExit(
                 f"Invalid month:{sys.argv[2]}\nThis should be between 1 and 12.\nPlease Try again."
                 )
-    elif len(sys.argv) == 2:
+    elif len(sys.argv) == 2: # Executes when only one argument is provided
         arg_year = int(sys.argv[1])
         print(f"User input only a year, outputting all Patch tuesdays for year: {arg_year}")
-        for range_month in range(1,13):
+        for range_month in range(1,13): # Validate month is correct
             print_output(arg_year, range_month, patch_tuesday(arg_year, range_month))
-    elif len(sys.argv) == 1:
+    elif len(sys.argv) == 1: # Executes main function when no arguments provided
         main()
-    else:
+    else: # If more than two arguments are provided raise as an error.
         raise SystemExit(f"Usage: {sys.argv[0]} <year> <month>")
