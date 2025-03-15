@@ -51,7 +51,6 @@ def patch_tuesday(year, month):
 
     # Store just the Patch Tuesday offset value
     patch_tuesday_offset = tuesday_offset[first_day]
-
     dict_patch_tuesday = { 'patch_tuesday':patch_tuesday_offset,
                            'patch_tuesday_date':patch_tuesday_date }
 
@@ -79,9 +78,9 @@ def main():
         month: The Month in a numeric format: e.g. 1 = Jan, 2 Feb etc.
     """
 
-    #Input year and month
+    # Input year and month
     input_year = input("Please input year: ")
-    #Ensure a valid month is input ()
+    # Ensure a valid month is input ()
     while True:
         input_month = input("Please input month: ")
         if int(input_month) in range(1,13): # Ranged 1-13 to include 12 as a valid month
